@@ -98,42 +98,15 @@ public class Conjunto<T> {
      */
     public void ordenar() {
         // :)
-        int indiceMenor, j, k;
-        for (j = 0; j < this.getCapacidad() - 1; j++) {
-            indiceMenor = j;
-            for (k = j + 1; k < this.getCapacidad(); k++) {
-                Comparable comparacion = (Comparable) cajas[k].getObjeto();
-                int rta = comparacion.compareTo(cajas[indiceMenor].getObjeto());
-                if (rta < 0) {
-                    indiceMenor = k;
-                }
-            }
-            if (j != indiceMenor) {
-                intercambiar(cajas, j, indiceMenor);
-            }
-        }
     }
 
-    public void intercambiar(Caja<T>[] a, int j, int index) {
-        T aux = (T) a[j];
-        a[j] = a[index];
-        a[index] = (Caja<T>) aux;
-    }
+
 
     /**
      * Realiza el ordenamiento por burbuja
      */
     public void ordenarBurbuja() {
-        for (int j = 1; j < this.cajas.length; j++) {
-            for (int k = 0; k < this.cajas.length - 1; k++) {
-                int rta = ((Comparable) cajas[k].getObjeto()).compareTo(cajas[k + 1].getObjeto());
-                if (rta > 0) {
-                    T aux = (T) cajas[k];
-                    cajas[k] = cajas[k + 1];
-                    cajas[k + 1] = (Caja<T>) aux;
-                }
-            }
-        }
+
     }
 
     /**
@@ -141,26 +114,16 @@ public class Conjunto<T> {
      *
      * @param objBorrado es el objeto que deseo eliminar
      */
-    /*public void remover(T objBorrado) {
-        int index = this.indexOf(objBorrado);
-        for (int j = index; j < this.getCapacidad() - 1; j++) {
-            T aux = this.get(j);
-            this.set(j, this.get(j + 1));
-            this.set(j + 1, aux);
-        }
-        this.cajas[this.i - 1] = null;
-        this.i--;
-    }*/
 
     public void remover(T objBorrado) {
-  
-        int Buscar = this.indexOf(objBorrado);
+      int Buscar = this.indexOf(objBorrado);
         
         for (int j = Buscar; j < this.getCapacidad()-1; j++) {
           
             this.cajas[j] = this.cajas[j+1];
            
         }
+       
        
     }
     /**
@@ -174,17 +137,7 @@ public class Conjunto<T> {
      * @param nuevo el objeto conjunto a ser colocado en el conjunto original
      */
     public void concatenar(Conjunto<T> nuevo) {
-        Caja<T> aux[] = new Caja[this.cajas.length + nuevo.cajas.length];
-        int j;
-        for (j = 0; j < this.cajas.length; j++) {
-            aux[j] = this.cajas[j];
-        }
-        for (int k = 0; k < nuevo.cajas.length; k++) {
-            aux[j] = nuevo.cajas[k];
-            j++;
-        }
-        nuevo.removeAll();
-        this.cajas = aux;
+
     }
 
     /**
@@ -197,16 +150,7 @@ public class Conjunto<T> {
      * @param nuevo el objeto conjunto a ser colocado en el conjunto original
      */
     public void concatenarRestrictivo(Conjunto<T> nuevo) {
-        for (int j = 0; j < this.getCapacidad(); j++) {
-            for (int k = 0; k < nuevo.getCapacidad(); k++) {
-                if (this.cajas[j].getObjeto().equals(nuevo.cajas[k].getObjeto())) {
-               //     nuevo.remover(nuevo.cajas[k].getObjeto());
-                }
-            }
 
-        }
-        this.concatenar(nuevo);
-        nuevo.removeAll();
     }
 
     public void removeAll() {
